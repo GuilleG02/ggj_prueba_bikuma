@@ -1,0 +1,74 @@
+import React, { useEffect, useRef, useState } from 'react';
+import foto1 from '../assets/Foto_1.png';
+import foto2 from '../assets/Foto_2.jpg';
+import foto3 from '../assets/Foto_3.jpg';
+import foto4 from '../assets/Foto_4.jpg';
+import foto5 from '../assets/Foto_5.jpg';
+
+const SLIDES = [
+  { img: foto1, title: 'Sistema de señalización accesible en espacios públicos', location: 'Madrid' },
+  { img: foto2, title: 'La estrategia integral para el fomento de la accesibilidad en bilbobus', location: 'Bilbao' },
+  { img: foto3, title: 'Alhóndiga bilbao - centro azkuna, pensando en la accesibilidad para todos', location: 'Bilbao' },
+  { img: foto4, title: 'Vilamuseu «museos para todos»', location: 'Vila Joiosa' },
+  { img: foto5, title: 'Plan de accesibilidad universal en centros culturales', location: 'Valencia' },
+];
+
+export default function ProjectsCarousel() {
+  const perView = 3;
+  const [center, setCenter] = useState(2); // por defecto Foto_3 en el centro
+  const intervalRef = useRef(null);
+
+  useEffect(() => {
+    startAuto();
+    return stopAuto;
+  }, [center]);
+
+  function startAuto() {
+    stopAuto();
+    intervalRef.current = setInterval(() => {
+      setCenter((prev) => (prev + 1) % SLIDES.length);
+    }, 4000);
+  }
+
+  function stopAuto() {
+    if (intervalRef.current) clearInterval(intervalRef.current);
+  }
+
+  function mod(n, m) { return ((n % m) + m) % m; }
+  function goTo(i) { setCenter(mod(i, SLIDES.length)); }
+
+  return (
+    <section className="section" id="projects" aria-labelledby="projects-title">
+      <div className="container">
+        <h2 id="projects-title">Proyectos de accesibilidad universal</h2>
+        <div className="carousel" onMouseEnter={stopAuto} onMouseLeave={startAuto}>
+          <div className="carousel-track">
+            {[-1, 0, 1].map((offset) => {
+              const i = mod(center + offset, SLIDES.length);
+              const s = SLIDES[i];
+              return (
+                <article key={`slide-${i}`} className="news-card">
+                  <div className="news-card__bg" style={{ backgroundImage: `url(${s.img})` }} aria-hidden="true" />
+                  <div className="news-card__content">
+                    <h3>{s.title}</h3>
+                    <div className="news-card__location">
+                      <span>📍</span> {s.location}
+                    </div>
+                  </div>
+                </article>
+              );
+            })}
+          </div>
+          <button className="carousel-btn prev" aria-label="Anterior" onClick={() => goTo(center - 1)}>‹</button>
+          <button className="carousel-btn next" aria-label="Siguiente" onClick={() => goTo(center + 1)}>›</button>
+          <div className="carousel-dots" role="tablist" aria-label="Navegación de proyectos">
+            {SLIDES.map((_, i) => (
+              <button key={i} className={`dot ${i === center ? 'is-active' : ''}`} aria-label={`Ir a la diapositiva ${i + 1}`} onClick={() => goTo(i)} />
+            ))}
+          </div>
+        </div>
+      </div>
+    </section>
+  );
+}
+
