@@ -49,7 +49,7 @@ body {
 .icon-btn:focus-visible { @include focus-ring; }
 
 /* Hero */
-.hero { background: #F6F9FE; padding: 20px 0 80px; overflow: hidden; position: relative; }
+.hero { background: #F6F9FE; padding: 20px 0 20px; overflow: hidden; position: relative; }
 /* Make container span full width and constrain only the left column */
 .hero .container { 
   max-width: none; 
@@ -70,20 +70,27 @@ body {
 
 /* Sections */
 .section { padding: 40px 0; background: #F6F9FE; }
-.section:first-of-type { padding-top: 20px; }
+.section:first-of-type { padding-top: 0; margin-top: -40px; }
 .section h2 { margin: 0 0 32px; font-size: clamp(22px, 2.5vw, 28px); text-align: center; }
-.grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 24px; max-width: 1100px; margin: 0 auto; }
+.grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 24px; max-width: 920px; margin: 0 auto; }
 
 .card { background: #fff; border: 1px solid #e8eef7; border-radius: 16px; overflow: hidden; transition: transform .15s ease, box-shadow .15s ease; text-align: center; }
 .card:focus-visible { @include focus-ring; }
 .card:hover { transform: translateY(-2px); box-shadow: 0 12px 30px rgba(0,0,0,.08); }
 .card-media { 
-  height: 40px; 
+  height: 60px; 
   background: transparent; 
   display: flex; 
   justify-content: center; 
-  align-items: flex-start; 
-  padding-top: 12px;
+  align-items: center; 
+  padding-top: 20px;
+}
+.braille-icon {
+  width: auto;
+  height: auto;
+  max-height: 24px;
+  display: block;
+  object-fit: contain;
 }
 .braille-dots {
   display: flex;
@@ -118,13 +125,29 @@ body {
   border: 2px solid $color-primary;
   border-radius: 50%;
 }
-.card-content { padding: 20px 20px 24px; }
+.card-content { padding: 20px 20px 40px; }
 .card h3 { margin: 6px 0 8px; font-size: 18px; }
 .card p { margin: 0; color: #4b6079; font-size: 14px; }
 
 /* Services */
 .services-section { padding: 60px 0; background: #F6F9FE; }
 #services .container { padding: 0 150px; }
+.services-cards-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 20px;
+  max-width: 1100px;
+  margin-left: auto;
+  margin-right: auto;
+}
+.services-cards-grid-top {
+  margin-bottom: 20px;
+}
+.services-cards-grid-bottom {
+  grid-template-columns: repeat(3, 1fr);
+  max-width: 680px;
+  justify-content: center;
+}
 .services-image-wrapper { position: relative; margin-top: 32px; }
 .services-image { width: 100%; height: auto; display: block; border-radius: 12px; transform: scale(1.35); transform-origin: center center; }
 .services-content { position: absolute; top: 0; right: 0; bottom: 25%; background: #005EB8; color: #fff; padding: 40px 35px; border-radius: 12px 0 0 12px; max-width: 52%; z-index: 2; display: flex; flex-direction: column; justify-content: center; transform: translateY(30%); }
@@ -153,8 +176,9 @@ body {
 .news-card__badge { position: absolute; top: 22px; left: 24px; background: #0b2a4a; color: #9ed0ff; font-weight: 800; font-size: 12px; padding: 6px 10px; border-radius: 10px; }
 .news-card__content { position: absolute; left: 24px; right: 24px; bottom: 24px; background: #fff; border-radius: 14px; padding: 12px 14px; box-shadow: 0 10px 24px rgba(0,0,0,.12); }
 .news-card__content h3 { margin: 0; font-size: 16px; }
-.news-card__location { display: flex; align-items: center; gap: 6px; margin-top: 8px; font-size: 13px; color: #666; }
-.news-card__location span { font-size: 14px; }
+.news-card__location { display: flex; align-items: center; gap: 6px; margin-top: 8px; }
+.news-card__location .location-icon { width: 16px; height: 16px; color: $color-text; flex-shrink: 0; }
+.news-card__location .location-text { font-size: 14px; color: $color-text; font-weight: 400; }
 .carousel-btn { display: none; }
 .carousel-dots { display: flex; justify-content: center; align-items: center; margin-top: 12px; gap: 8px; }
 .carousel-dots .dot { 
@@ -187,11 +211,11 @@ body {
 
 /* Columna izquierda: Brand */
 .footer-brand { display: flex; flex-direction: column; gap: 16px; }
-.footer-logo { height: 48px; width: auto; margin-bottom: 8px; }
+.footer-logo { height: 48px; width: auto; max-width: 199px; margin-bottom: 8px; }
 .footer-description { color: #fff; font-size: 14px; line-height: 1.6; margin: 0; max-width: 320px; }
-.footer-contact { align-self: flex-start; margin-top: 8px; }
+.footer-contact { align-self: flex-start; margin-top: 8px; font-size: 12px; padding-left: 32px; padding-right: 32px; }
 .footer-certifications { margin-top: 16px; }
-.footer-certifications img { height: 60px; width: auto; display: block; }
+.footer-certifications img { height: 80px; width: auto; display: block; }
 
 /* Columna central: Navigation */
 .footer-nav nav { display: flex; flex-direction: column; gap: 12px; }
@@ -259,15 +283,16 @@ body {
 
 /* Fila inferior: Legal y redes sociales */
 .footer-bottom { display: flex; justify-content: space-between; align-items: center; padding-top: 24px; border-top: 1px solid rgba(255,255,255,.1); }
-.footer-legal { display: flex; align-items: center; gap: 16px; color: #fff; font-size: 13px; }
-.footer-legal a { color: #fff; text-decoration: none; transition: opacity .15s ease; }
+.footer-legal { display: flex; align-items: center; gap: 16px; color: #9ed0ff; font-size: 13px; }
+.footer-legal a { color: #9ed0ff; text-decoration: none; transition: opacity .15s ease; }
 .footer-legal a:hover { opacity: .8; }
 .footer-nav nav { display: flex; flex-direction: column; gap: 28px; align-items: flex-start; padding-left: 20px; margin-top: 16px; }
 .footer-nav a { color: #fff; text-decoration: none; font-size: 14px; font-weight: 700; transition: opacity .15s ease; }
 .footer-nav a:hover { opacity: .8; }
-.footer-social { display: flex; gap: 16px; }
-.footer-social a { color: #fff; text-decoration: none; font-size: 16px; font-weight: 700; transition: opacity .15s ease; }
+.footer-social { display: flex; gap: 24px; align-items: center; }
+.footer-social a { color: #fff; text-decoration: none; font-size: 16px; font-weight: 700; transition: opacity .15s ease; display: flex; align-items: center; justify-content: center; }
 .footer-social a:hover { opacity: .7; }
+.footer-social .social-icon svg { width: 16px; height: 16px; display: block; }
 
 /* Responsive */
 /* Pantallas muy grandes (> 1920px) - ajustes solo para estas pantallas */
