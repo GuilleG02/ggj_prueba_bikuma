@@ -3,7 +3,7 @@ import React from 'react';
 function Card({ title, subtitle, imgAlt }) {
   return (
     <article className="card" tabIndex="0">
-      <div className="card-media" role="img" aria-label={imgAlt} />
+      <div className="card-media" role="img" aria-label={imgAlt}></div>
       <div className="card-content">
         <h3>{title}</h3>
         {subtitle && <p>{subtitle}</p>}

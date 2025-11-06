@@ -11,7 +11,7 @@ export default function Hero() {
             Actualiza tu proyecto con accesibilidad en la información y lleva tu
             mensaje a todas las personas.
           </p>
-          <a href="#contact" className="btn-primary">Contacta con nosotros</a>
+          <a href="#contact" className="btn-primary">Contacta con nosotros →</a>
         </div>
         <img className="hero-image" src={heroImage} alt="Ilustración del proyecto de accesibilidad" loading="lazy" />
       </div>
