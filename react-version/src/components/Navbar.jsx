@@ -1,19 +1,39 @@
-import React from 'react';
+import React, { useState } from 'react';
 import logo from '../assets/logoBikuma.png';
 
 export default function Navbar() {
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
+
+  const toggleMenu = () => {
+    setIsMenuOpen(!isMenuOpen);
+  };
+
+  const closeMenu = () => {
+    setIsMenuOpen(false);
+  };
+
   return (
     <header className="navbar" role="banner">
       <div className="container">
         <a className="logo" href="#" aria-label="Puntodis home">
           <img src={logo} alt="Puntodis Accessible Solutions" />
         </a>
-        <nav aria-label="Principal" className="nav-main">
-          <a href="#services">Servicios</a>
-          <a href="#products">Productos</a>
-          <a href="#administracion">Administración pública</a>
-          <a href="#conocenos">Conócenos</a>
-          <a href="#actualidad">Actualidad</a>
+        <button 
+          className={`hamburger-btn ${isMenuOpen ? 'is-open' : ''}`}
+          aria-label="Menú" 
+          aria-expanded={isMenuOpen}
+          onClick={toggleMenu}
+        >
+          <span></span>
+          <span></span>
+          <span></span>
+        </button>
+        <nav aria-label="Principal" className={`nav-main ${isMenuOpen ? 'is-open' : ''}`}>
+          <a href="#services" onClick={closeMenu}>Servicios</a>
+          <a href="#products" onClick={closeMenu}>Productos</a>
+          <a href="#administracion" onClick={closeMenu}>Administración pública</a>
+          <a href="#conocenos" onClick={closeMenu}>Conócenos</a>
+          <a href="#actualidad" onClick={closeMenu}>Actualidad</a>
         </nav>
         <div className="nav-actions" role="group" aria-label="Acciones">
           <a href="#contact" className="btn-primary">Contactar</a>
