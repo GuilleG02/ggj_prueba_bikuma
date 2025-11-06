@@ -199,7 +199,6 @@ body {
 .news-card__location { display: flex; align-items: center; gap: 6px; margin-top: 8px; }
 .news-card__location .location-icon { width: 16px; height: 16px; color: $color-text; flex-shrink: 0; }
 .news-card__location .location-text { font-size: 14px; color: $color-text; font-weight: 400; }
-.carousel-btn { display: none; }
 .carousel-dots { display: flex; justify-content: center; align-items: center; margin-top: 12px; gap: 8px; }
 .carousel-dots .dot { 
   width: 8px; 

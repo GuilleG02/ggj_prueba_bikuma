@@ -14,8 +14,7 @@ const SLIDES = [
 ];
 
 export default function NewsCarousel() {
-  const perView = 3;
-  const [center, setCenter] = useState(2); // por defecto la 3 en el centro
+  const [center, setCenter] = useState(2);
   const intervalRef = useRef(null);
 
   useEffect(() => {
@@ -57,8 +56,6 @@ export default function NewsCarousel() {
               );
             })}
           </div>
-          <button className="carousel-btn prev" aria-label="Anterior" onClick={() => goTo(center - 1)}>‹</button>
-          <button className="carousel-btn next" aria-label="Siguiente" onClick={() => goTo(center + 1)}>›</button>
           <div className="carousel-dots" role="tablist" aria-label="Navegación de noticias">
             {SLIDES.map((_, i) => (
               <button key={i} className={`dot ${i === center ? 'is-active' : ''}`} aria-label={`Ir a la diapositiva ${i + 1}`} onClick={() => goTo(i)} />
