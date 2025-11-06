@@ -231,14 +231,15 @@ body {
 
 /* Responsive */
 /* Pantallas muy grandes (> 1920px) - ajustes solo para estas pantallas */
-@media (min-width: 1921px) {
+@media (min-width: 1920px) {
   /* Hero: centrar contenido y limitar ancho en pantallas muy grandes */
   /* La imagen tendrá el mismo margen derecho (80px) que el texto tiene a la izquierda */
   .hero .container {
-    max-width: 1440px;
-    margin: 0 auto;
-    padding-left: 80px;
+    max-width: 1440px !important;
+    margin: 0 auto !important;
+    padding-left: 80px !important;
     padding-right: 80px !important;
+    width: 100%;
   }
   
   .hero-content {
