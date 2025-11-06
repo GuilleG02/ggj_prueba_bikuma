@@ -233,11 +233,12 @@ body {
 /* Pantallas muy grandes (> 1920px) - ajustes solo para estas pantallas */
 @media (min-width: 1921px) {
   /* Hero: centrar contenido y limitar ancho en pantallas muy grandes */
+  /* La imagen tendrá el mismo margen derecho (80px) que el texto tiene a la izquierda */
   .hero .container {
     max-width: 1440px;
     margin: 0 auto;
     padding-left: 80px;
-    padding-right: 80px;
+    padding-right: 80px !important;
   }
   
   .hero-content {
